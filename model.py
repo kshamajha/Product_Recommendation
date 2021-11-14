@@ -5,18 +5,19 @@
 
 # Suppress Warnings
 import warnings
+import numpy as np
 
 warnings.filterwarnings('ignore')
 
 import pickle as pkl
 
-# ## import all pickle files
-# #### xbg.pkl - sentiment analysis XGBoost model pickle file
-# #### tfidf.pkl - tfidf vectorizer
-# #### transform.pkl - this pickle file after text cleaning
-# #### user_recommendation.pkl - user based recommendation model
+# import all pickle files
+# best_model.pkl - sentiment analysis best model pickle file
+# tfidf.pkl - tfidf vectorizer
+# transform.pkl - this pickle file after text cleaning
+# user_recommendation.pkl - user based recommendation model
 
-xgb = pkl.load(open('models/Xgboost.pkl', 'rb'))
+model = pkl.load(open('models/best_model.pkl', 'rb'))
 tfidf = pkl.load(open('models/tfidf.pkl', 'rb'))
 transform = pkl.load(open('dataset/transform.pkl', 'rb'))
 user_recom = pkl.load(open('models/user_recommendation.pkl', 'rb'))
@@ -25,11 +26,14 @@ user_recom = pkl.load(open('models/user_recommendation.pkl', 'rb'))
 def sentiment(recom_prod):
     df = transform[transform.name.isin(recom_prod)]
     features = tfidf.transform(df['text'])
-    pred_data = xgb.predict(features)
+    pred_data = model.predict(features)
     predictions = [round(value) for value in pred_data]
     df['predicted'] = predictions
-    output_data = df[df['predicted'] == 1][['name', 'brand', 'categories']].drop_duplicates()[:5].reset_index(drop=True)
-
+    grouped_df = df.groupby(['name'])
+    product_class = grouped_df['predicted'].agg(mean_class=np.mean)
+    df = product_class.sort_values(by=['mean_class'], ascending=False)[:5]
+    df['Product Name'] = df.index
+    output_data = df[['Product Name']][:5].reset_index(drop=True)
     return output_data
 
 

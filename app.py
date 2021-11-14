@@ -25,7 +25,7 @@ def predict():
     if result:
         # Sentiment model call
         output = model.sentiment(recom_products)
-        return render_template('index.html', tables=[output.to_html(classes='data', index=False)])
+        return render_template('index.html', username=user_input, tables=[output.to_html(classes='data', index=False)])
     else:
         return render_template('index.html', message=recom_products)
 
