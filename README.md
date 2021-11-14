@@ -1,3 +1,8 @@
-# Heroku-Demo
-# Deploying the Sentiment Analysis code in Heroku using Flask
-## The model will recommend top different products in different categories to the User based on User recommendation and product review text analysis using NLP and ML model
+# Sentiment Based Product Recommendation System - Demo
+## Problem Statement
+The e-commerce business is quite popular today. Here, you do not need to take orders by going to each customer. A company launches its website to sell the items to the end consumer, and customers can order the products that they require from the same website. Famous examples of such e-commerce companies are Amazon, Flipkart, Myntra, Paytm and Snapdeal. Ebuss has captured a huge market share in many fields, and it sells the products in various categories such as household essentials, books, personal care products, medicines, cosmetic items, beauty products, electrical appliances, kitchen and dining products and health care products. With the advancement in technology, it is imperative for Ebuss to grow quickly in the e-commerce market to become a major leader in the market because it has to compete with the likes of Amazon, Flipkart, etc., which are already market leaders.
+As a senior ML Engineer, need to build a model that will improve the recommendations given to the users given their past reviews and ratings.
+## Deploying the Sentiment Based Product Recommendation System application in Heroku using Flask
+This repository contains all the required files for deployment in Heroku.
+The user interface code is in templates/index.html file which takes username as input.
+The model will recommend top 5 different products to the user based on user recommendation and product review text analysis using NLP and ML model for the username entered.
