@@ -6,3 +6,4 @@ As a senior ML Engineer, need to build a model that will improve the recommendat
 This repository contains all the required files for deployment in Heroku.
 The user interface code is in templates/index.html file which takes username as input.
 The model will recommend top 5 different products to the user based on user recommendation and product review text analysis using NLP and ML model for the username entered.
+### URL to access the application: https://deploy-products-recommendation.herokuapp.com/
