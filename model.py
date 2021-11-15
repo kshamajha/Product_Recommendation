@@ -31,7 +31,7 @@ def recommendation(user_input):
         recom_data = user_recom.loc[user_input].sort_values(ascending=False)[0:20].index
     except:
         result = False
-        recom_data = "User with username \"" + user_input + "\" not found, try another username"
+        recom_data = "User with username \"" + user_input + "\" not found in dataset, try another username"
     return result, recom_data
 
 
